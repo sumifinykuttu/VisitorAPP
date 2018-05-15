@@ -82,8 +82,8 @@ image : any = '';
   // });
     }
     sendEmail(){
-     const email = this.todo.email;
-   this.http.post("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDAi4IYxh4mSTyCJhkg5Opz7ZW2OBLyovI",email).
+     const email = 'sulai.sumi@corp.sysco.com';
+   this.http.post("https://us-central1-sampleservice-c9f34.cloudfunctions.net/visitor/api/notify/email",email).
     subscribe(data=>{   
      console.log('data');
       
