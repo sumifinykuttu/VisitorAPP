@@ -1,0 +1,158 @@
+<ion-header class="bg-header">
+  <ion-navbar>
+    <ion-title>Vistors Management Portal</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="containerDiv">
+<div *ngIf="!status" class="fullWidth">
+<ion-card class="mt5p mb5p">
+  <ion-card-header class="page-title">
+    About yourself
+  </ion-card-header>
+
+<!--<form (ngSubmit)="logForm()">-->
+
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.name" name="name"></ion-input>
+    </ion-item>
+      <ion-item>
+      <ion-label floating>Company</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.company" name="company"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone #</ion-label>
+      <ion-input type="number" [(ngModel)]="todo.number" name="number"></ion-input>
+    </ion-item>
+       <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="todo.email" name="email"></ion-input>
+    </ion-item>
+    <!--<ion-item>
+      <ion-label floating>ID Card Type</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>-->
+    <ion-item>
+      <ion-label floating>ID Proof #</ion-label>
+      <ion-input type="text"  [(ngModel)]="todo.proof" name="proof"></ion-input>
+    </ion-item>
+  <!--<hr/>
+    <ion-card-header>
+      Employee Details
+    </ion-card-header>
+    <ion-item>
+      <ion-label floating>Emp. Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Emp. Mob No.</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>-->
+    <ion-item class="reg-btnitem">
+      <button ion-button class="register-btn"  (click)="logForm()">Register</button>
+    </ion-item>
+    <!-- <form [formGroup]="credentialsForm">
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input [formControl]="credentialsForm.controls['email']"
+            type="email"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input [formControl]="credentialsForm.controls['password']"
+            type="password"></ion-input>
+      </ion-item>      
+    
+      <ion-row>
+        <ion-col text-center>
+          <button ion-button block color="secondary" (click)="onSignIn()">
+            Sign in
+          </button>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+        <ion-col text-center>
+          <button ion-button clear color="light" (click)="onForgotPassword()">
+            Forgot your password?
+          </button>
+        </ion-col>
+      </ion-row>
+    
+    </form> -->
+<!--</form>-->
+ 
+</ion-card>
+</div>
+<div *ngIf="employee" class="fullWidth">
+<ion-card class="mt5p mb5p">
+  <ion-card-header class="page-title">
+    Whom do you want to visit?
+  </ion-card-header>
+
+<!--<form (ngSubmit)="logForm()">-->
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <label for="employee1">Employee Name</label>
+    <input type="text" id="employee1" placeholder="search word" aria-label="Number" matInput [formControl]="searchTerm" [matAutocomplete]="auto" [(ngModel)]="todo.host">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let item of searchResult" [value]="item">
+        {{ item }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+    <ion-item class="reg-btnitem">
+      <button ion-button class="register-btn"  (click)="photoPage()">Register</button>
+    </ion-item>
+</ion-card>
+</div>
+<div *ngIf="details" class="fullWidth">
+<ion-card class="mt5p mb5p details-card">
+  <ion-card-header class="page-title">
+    Capture your photo
+  </ion-card-header>
+
+<ion-grid>
+    <ion-row class="img-cont">
+    <img src="../../assets/imgs/user.png" class=""/>
+     <img src={{image}} class=""/>
+    <button ion-button class="" (click)="capture()">Capture</button>
+  </ion-row>
+  <ion-row>
+     <button ion-button class="" (click)="printPreview()">Print Preview</button>
+    </ion-row>
+</ion-grid>
+</ion-card>
+</div>
+
+<div *ngIf="pass" class="fullWidth">
+<ion-card class="mt5p mb5p details-card">
+  <ion-card-header class="page-title">
+    Print Preview
+  </ion-card-header>
+
+<div class="pass-header">Visitor Pass</div>
+<div class="center-align"><img src={{image}} class="capture-img"/></div>
+<div class="pass-details">
+  <div><span>Visitor Name</span><span class="pass-value"> {{todo.name}}</span> </div>
+   <div><span>Company Name</span><span class="pass-value"> {{todo.company}}</span> </div>
+    <div><span>Host Name</span><span class="pass-value"> {{todo.host}}</span> </div>
+     <div><span>Date</span><span class="pass-value"> {{ today | date }}</span> </div>
+      <div><span>Time</span><span class="pass-value"> {{today | date:'shortTime'}}</span> </div>
+   </div>
+   <ion-grid>
+     <ion-row>
+          <ion-col>
+   <div> <button ion-button class="" (click)="sendEmail()">Send Notification to Host</button> </div>
+       </ion-col>
+       <ion-col>
+   <div> <button ion-button class="" (click)="print()">Print</button> </div>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+</ion-card>
+</div>
+</ion-content>
